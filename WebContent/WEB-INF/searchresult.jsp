@@ -8,7 +8,7 @@
 <title>View</title>
 </head>
 <body>
-<c:forEach var="filmList" items="${filmList}">
+<c:forEach var="film" items="${filmList}">
 <c:out value="${filmList.film }">
 <h1>${film.title}</h1>
 	<ul>
