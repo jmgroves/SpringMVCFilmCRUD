@@ -14,8 +14,8 @@
      <input type="submit" value="Edit Film" name = "edit"/><br />
 	</form>
 	<form action="delete.do" method="GET">
-     <input type="submit" value="Delete Film" name = "delete"/><br />
-     <input type="hidden" name="id" value="${film}" />
+     <input type="submit" value="Delete" name = "delete"/><br />
+     <input type="hidden" name="film" value="${film.id}" />
 	</form>
 	<c:choose>
 	<c:when test="${not empty deletedFilm}">You deleted ${deletedFilm}</c:when>
