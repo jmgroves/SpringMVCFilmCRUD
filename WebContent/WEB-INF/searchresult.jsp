@@ -22,6 +22,14 @@
 		<li>Actors: ${film.actorList }</li>
 		<li>Category: ${film.categories }</li>
 	</ul>
+		<form action="edit.do" method="GET">
+     <input type="submit" value="Update" name = ""/><br />
+     <input type="hidden" name="filmId" value="${film.id}" />
+	</form>
+		<form action="delete.do" method="GET">
+     <input type="submit" value="Delete" name = ""/><br />
+     <input type="hidden" name="filmId" value="${film.id}" />
+	</form>
 </c:forEach>
 
 </body>

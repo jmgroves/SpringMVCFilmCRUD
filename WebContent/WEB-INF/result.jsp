@@ -53,6 +53,7 @@
 		<li>Replacement Cost: ${film.replacementCost }</li>
 		<li>Actors: ${film.actorList }</li>
 		<li>Category: ${film.categories }</li>
+		
 	</ul></c:otherwise>
 	</c:choose>
 	<div><a href="index.html">Home</a></div>
