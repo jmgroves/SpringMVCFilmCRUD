@@ -72,7 +72,7 @@ public class FilmController {
 		}
 		return mv;
 	}
-	@RequestMapping(path="result.do", method=RequestMethod.GET, name ="filmKeyword")
+	@RequestMapping(path="searchResult.do", method=RequestMethod.GET, name ="filmKeyword")
 	  public ModelAndView viewFilmBySearch(String search) {
 	    ModelAndView mv = new ModelAndView();
 	    List<Film> f;
