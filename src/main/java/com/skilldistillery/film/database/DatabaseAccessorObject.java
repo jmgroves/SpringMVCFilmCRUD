@@ -302,7 +302,8 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		String pass = "student";
 		Connection conn = null;
 		try {
-			// delete child from film actor
+			// delete child from film actor 
+			// Commented code below is for deleting for existing films
 			conn = DriverManager.getConnection(url, user, pass);
 			conn.setAutoCommit(false); // START TRANSACTION
 			// String sql = "DELETE FROM film_actor WHERE film_id = ?";
@@ -326,6 +327,9 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			// stmt = conn.prepareStatement(sql);
 			// stmt.setInt(1, film.getId());
 			// updateCount = stmt.executeUpdate();
+			
+			
+			//Code for deleting our personally added films with no crazy dependencies 
 
 			String sql = "DELETE FROM film WHERE id = ?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
@@ -344,6 +348,53 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			return false;
 		}
 		return true;
+	}
+	public Actor addActor(Actor actor) throws SQLException {
+		Connection conn = null;
+		String user = "student";
+		String pass = "student";
+		try {
+			conn = DriverManager.getConnection(url, user, pass);
+			conn.setAutoCommit(false); // START TRANSACTION
+			String sql = "INSERT INTO actor (first_name, last_name) values (?, ?)";
+			PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			stmt.setString(1, actor.getFirstName());
+			stmt.setString(2, actor.getLastName());
+			
+			int updateCount = stmt.executeUpdate();
+			if (updateCount == 1) {
+				ResultSet keys = stmt.getGeneratedKeys();
+				if (keys.next()) {
+					int newFilmId = keys.getInt(1);
+					actor.setId(newFilmId);
+
+					System.out.println(actor.getId());
+					// if (film.getTitle() != null && film.getTitle().length() > 0) {
+					// sql = "INSERT INTO film_actor (film_id, actor_id) VALUES (?, null)";
+					// stmt = conn.prepareStatement(sql);
+					// //for (Film film : film.getFilms()) {
+					// stmt.setInt(1, film.getId());
+					// updateCount = stmt.executeUpdate();
+					// }
+					// //}
+				}
+			} else {
+				actor = null;
+			}
+			conn.commit();
+			System.out.println("commited");// COMMIT TRANSACTION
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+			if (conn != null) {
+				try {
+					conn.rollback();
+				} catch (SQLException sqle2) {
+					System.err.println("Error trying to rollback");
+				}
+			}
+			throw new RuntimeException("Error inserting Actor " + actor);
+		}
+		return actor;
 	}
 
 }
