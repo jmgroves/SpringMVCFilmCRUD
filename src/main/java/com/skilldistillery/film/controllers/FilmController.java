@@ -76,12 +76,12 @@ public class FilmController {
 		}
 		return mv;
 	}
-	@RequestMapping(path="searchResult.do", method=RequestMethod.GET, name ="filmKeyword")
-	  public ModelAndView viewFilmBySearch(String search) {
+	@RequestMapping(path="searchresult.do", method=RequestMethod.GET, name ="filmKeyword")
+	  public ModelAndView viewFilmBySearch(String filmKeyword) {
 	    ModelAndView mv = new ModelAndView();
 	    List<Film> f;
 		try {
-			f = db.getFilmBySearch(search);
+			f = db.getFilmBySearch(filmKeyword);
 			mv.addObject("film", f);
 			mv.setViewName("/WEB-INF/searchresult.jsp");
 		} catch (SQLException e) {
