@@ -28,7 +28,7 @@ public class FilmController {
 	}
 	
 	
-	
+//views film by id parameter passed in.
 	@RequestMapping(path="result.do", method=RequestMethod.GET, name = "filmId")
 	  public ModelAndView viewFilmById(int filmId) {
 	    ModelAndView mv = new ModelAndView();
@@ -45,7 +45,7 @@ public class FilmController {
 	  }
 	
 
-
+//We pass in filmID param and use that to get the proper film to delete
 	@RequestMapping(path="delete.do", method=RequestMethod.GET)
 	public ModelAndView deleteFilm(@RequestParam("filmId") String filmId) {
 		ModelAndView mv = new ModelAndView();
@@ -61,6 +61,7 @@ public class FilmController {
 		}
 		return mv;
 	}
+//editing filmfilm -> non functional
 	@RequestMapping(path="edit.do", method=RequestMethod.GET)
 	public ModelAndView editFilm(Film oldFilm, Film updatedFilm) {
 		ModelAndView mv = new ModelAndView();
@@ -77,6 +78,7 @@ public class FilmController {
 		}
 		return mv;
 	}
+//We pass in a string that is queried using % around the string to detect the word in desc or title 
 	@RequestMapping(path="searchresult.do", method=RequestMethod.GET, name ="filmKeyword")
 	  public ModelAndView viewFilmBySearch(String filmKeyword) {
 	    ModelAndView mv = new ModelAndView();
