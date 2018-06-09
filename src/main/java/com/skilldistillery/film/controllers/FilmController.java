@@ -82,8 +82,9 @@ public class FilmController {
 	    List<Film> f;
 		try {
 			f = db.getFilmBySearch(filmKeyword);
-			mv.addObject("film", f);
+			mv.addObject("filmList", f);
 			mv.setViewName("/WEB-INF/searchresult.jsp");
+			System.out.println(f);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
