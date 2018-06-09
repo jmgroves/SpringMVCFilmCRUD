@@ -54,7 +54,13 @@
 		<li>Actors: ${film.actorList }</li>
 		<li>Category: ${film.categories }</li>
 		
-	</ul></c:otherwise>
+	</ul><br />
+	    <form action="delete.do" method="GET">
+     <input type="submit" value="Delete" name = ""/><br />
+     <input type="hidden" name="filmId" value="${film.id}" />
+	</form>
+	
+	</c:otherwise>
 	</c:choose>
 	<div><a href="index.html">Home</a></div>
 	
