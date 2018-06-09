@@ -32,7 +32,6 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		if (filmId <= 0) {
 			return null;
 		}
-		System.out.println("In database *************");
 		String user = "student";
 		String pass = "student";
 		Connection conn = DriverManager.getConnection(url, user, pass);

@@ -27,12 +27,11 @@ public class FilmController {
 	@RequestMapping(path="result.do", method=RequestMethod.GET)
 	  public ModelAndView viewFilmById(int filmId) {
 	    ModelAndView mv = new ModelAndView();
-	    System.out.println("In film view method **********");
 	    Film f;
 		try {
 			f = db.getFilmById(filmId);
 			mv.addObject("film", f);
-			mv.setViewName("result.jsp");
+			mv.setViewName("/WEB-INF/result.jsp");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
