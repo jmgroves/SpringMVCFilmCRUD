@@ -104,5 +104,17 @@ public class FilmController {
 		mv.setViewName("/WEB-INF/addactor.jsp");
 	    return mv;
 	  }
+	@RequestMapping(path="edit.do", method=RequestMethod.POST, name ="updateFilm")
+	  public ModelAndView displayEditPage(){
+	    ModelAndView mv = new ModelAndView();	    
+		mv.setViewName("/WEB-INF/edit.jsp");
+	    return mv;
+	  }
+	@RequestMapping(path="edit.do", method=RequestMethod.GET, name ="updateFilm")
+	  public ModelAndView updateFilm(Film existingFilm, Film updatedFilmProperties){
+	    ModelAndView mv = new ModelAndView();	    
+		mv.setViewName("/WEB-INF/result.jsp");
+	    return mv;
+	  }
 
 }
