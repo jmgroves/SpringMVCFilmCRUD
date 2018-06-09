@@ -9,7 +9,6 @@
 </head>
 <body>
 <c:forEach var="film" items="${filmList}">
-<c:out value="${filmList.film }">
 <h1>${film.title}</h1>
 	<ul>
 		<li>Description: ${film.description }</li>
@@ -22,7 +21,7 @@
 		<li>Replacement Cost: ${film.replacementCost }</li>
 		<li>Actors: ${film.actorList }</li>
 		<li>Category: ${film.categories }</li>
-	</ul></c:out>
+	</ul>
 </c:forEach>
 
 </body>
