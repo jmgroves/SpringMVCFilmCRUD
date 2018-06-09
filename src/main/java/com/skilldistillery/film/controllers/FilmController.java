@@ -25,7 +25,7 @@ public class FilmController {
 	
 	
 	
-	@RequestMapping(path="result.do", method=RequestMethod.GET)
+	@RequestMapping(path="result.do", method=RequestMethod.GET, name = "filmId")
 	  public ModelAndView viewFilmById(int filmId) {
 	    ModelAndView mv = new ModelAndView();
 	    Film f;
@@ -39,18 +39,52 @@ public class FilmController {
 		}
 	    return mv;
 	  }
-//	@RequestMapping(path="result.do", method=RequestMethod.GET)
-//	  public ModelAndView viewFilmBySearch(String search) {
-//	    ModelAndView mv = new ModelAndView();
-//	    List<Film> f;
-//		try {
-//			f = db.getFilmBySearch(search);
-//			mv.addObject("filmList", f);
-//			mv.setViewName("/WEB-INF/searchresult.jsp");
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	    return mv;
-//	  }
+
+
+
+	@RequestMapping(path="delete.do", method=RequestMethod.GET)
+	public ModelAndView deleteFilm(Film film) {
+		ModelAndView mv = new ModelAndView();
+		Film f = film;
+		try {
+			db.deleteFilm(film);
+			mv.addObject("film", f);
+			mv.setViewName("/WEB-INF/result.jsp");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return mv;
+	}
+	@RequestMapping(path="edit.do", method=RequestMethod.GET)
+	public ModelAndView editFilm(Film oldFilm, Film updatedFilm) {
+		ModelAndView mv = new ModelAndView();
+		Film f = oldFilm;
+		Film f2 = updatedFilm;
+		try {
+			db.updateFilm(oldFilm, updatedFilm);
+			mv.addObject("film", f);
+			mv.addObject("newFilm", f);
+			mv.setViewName("/WEB-INF/result.jsp");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return mv;
+	}
+	@RequestMapping(path="result.do", method=RequestMethod.GET, name ="filmKeyword")
+	  public ModelAndView viewFilmBySearch(String search) {
+	    ModelAndView mv = new ModelAndView();
+	    List<Film> f;
+		try {
+			f = db.getFilmBySearch(search);
+			mv.addObject("film", f);
+			mv.setViewName("/WEB-INF/searchresult.jsp");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    return mv;
+	  }
+
 }
