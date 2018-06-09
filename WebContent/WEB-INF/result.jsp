@@ -14,7 +14,7 @@
      <input type="submit" value="Edit Film" name = "edit"/><br />
 	</form>
 	<form action="delete.do" method="GET">
-     <input type="submit" value="Delete" name = "delete"/><br />
+     <input type="submit" value="Delete" name = ""/><br />
      <input type="hidden" name="filmId" value="${film.id}" />
 	</form>
 	<c:choose>
@@ -36,5 +36,6 @@
 	</ul></c:otherwise>
 	</c:choose>
 	<div><a href="index.html">Home</a></div>
+	
 </body>
 </html>
