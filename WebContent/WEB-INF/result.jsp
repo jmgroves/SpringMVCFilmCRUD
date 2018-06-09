@@ -10,7 +10,18 @@
 <title>View</title>
 </head>
 <body>
-	<h1>${film.title}</h1>
+	<form action="edit.do" method="GET">
+     <input type="submit" value="Edit Film" name = "edit"/><br />
+	</form>
+	<form action="delete.do" method="GET">
+     <input type="submit" value="Delete Film" name = "delete"/><br />
+     <input type="hidden" name="id" value="${film}" />
+	</form>
+	<c:choose>
+	<c:when test="${not empty deletedFilm}">You deleted ${deletedFilm}</c:when>
+	<c:when test="${not empty updatedFilm}">You updated ${updatedFilm.title}</c:when>
+	<c:otherwise>
+		<h1>${film.title}</h1>
 	<ul>
 		<li>Description: ${film.description }</li>
 		<li>Special Features: ${film.specialFeatures }</li>
@@ -22,12 +33,8 @@
 		<li>Replacement Cost: ${film.replacementCost }</li>
 		<li>Actors: ${film.actorList }</li>
 		<li>Category: ${film.categories }</li>
-	</ul>
-	<form action="edit.do" method="GET">
-     <input type="submit" value="Edit Film" name = "edit"/><br />
-	</form>
-	<form action="delete.do" method="GET">
-     <input type="submit" value="Edit Film" name = "delete"/><br />
-	</form>
+	</ul></c:otherwise>
+	</c:choose>
+	<div><a href="index.html">Home</a></div>
 </body>
 </html>

@@ -1,5 +1,7 @@
 package com.skilldistillery.film.controllers;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
 import java.sql.SQLException;
 import java.util.List;
 
@@ -7,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.film.database.DatabaseAccessor;
@@ -43,12 +46,13 @@ public class FilmController {
 
 
 	@RequestMapping(path="delete.do", method=RequestMethod.GET)
-	public ModelAndView deleteFilm(Film film) {
+	public ModelAndView deleteFilm(@RequestParam("film") Film film) {
 		ModelAndView mv = new ModelAndView();
-		Film f = film;
+		
+		String title = film.getTitle();
 		try {
+			mv.addObject("deletedFilm", title);
 			db.deleteFilm(film);
-			mv.addObject("film", f);
 			mv.setViewName("/WEB-INF/result.jsp");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
