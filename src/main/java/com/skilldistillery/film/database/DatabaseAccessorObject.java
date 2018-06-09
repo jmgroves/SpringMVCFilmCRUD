@@ -9,19 +9,30 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.skilldistillery.film.entities.Actor;
 import com.skilldistillery.film.entities.Film;
 import com.skilldistillery.film.entities.Inventory;
 
+@Component
 public class DatabaseAccessorObject implements DatabaseAccessor {
 	private static String url = "jdbc:mysql://localhost:3306/sdvid";
+    static {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            System.err.println("Error loading mySql driver");
+            e.printStackTrace();
+        }
+    }
 
 	@Override
 	public Film getFilmById(int filmId) throws SQLException {
 		if (filmId <= 0) {
 			return null;
 		}
-
+		System.out.println("In database *************");
 		String user = "student";
 		String pass = "student";
 		Connection conn = DriverManager.getConnection(url, user, pass);
