@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,5 +23,9 @@
 		<li>Actors: ${film.actorList }</li>
 		<li>Category: ${film.categories }</li>
 	</ul>
+	<form action="edit.do" method="GET">
+     <input type="submit" value="Edit Film" name = "edit"/><br />
+     <input type="submit" value="Delete Film" name = "delete"/><br />
+	</form>
 </body>
 </html>
