@@ -25,7 +25,9 @@
 	</ul>
 	<form action="edit.do" method="GET">
      <input type="submit" value="Edit Film" name = "edit"/><br />
-     <input type="submit" value="Delete Film" name = "delete"/><br />
+	</form>
+	<form action="edit.do" method="GET">
+     <input type="submit" value="Edit Film" name = "edit"/><br />
 	</form>
 </body>
 </html>
