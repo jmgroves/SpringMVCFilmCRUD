@@ -349,7 +349,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		}
 		return true;
 	}
-	public Actor addActor(Actor actor) throws SQLException {
+	public Actor addActor(Actor actor) {
 		Connection conn = null;
 		String user = "student";
 		String pass = "student";

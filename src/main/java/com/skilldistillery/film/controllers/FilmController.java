@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.skilldistillery.film.database.DatabaseAccessor;
+import com.skilldistillery.film.entities.Actor;
 import com.skilldistillery.film.entities.Film;
 
 @Controller
@@ -88,6 +89,17 @@ public class FilmController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	    return mv;
+	  }
+	@RequestMapping(path="addactor.do", method=RequestMethod.GET, name ="addActor")
+	  public ModelAndView addActor(String firstName, String lastName) {
+	    ModelAndView mv = new ModelAndView();
+	    Actor actor = new Actor();
+	    actor.setFirstName(firstName);
+	    actor.setLastName(lastName);
+		db.addActor(actor);
+		mv.addObject("actor", actor);
+		mv.setViewName("/WEB-INF/addactor.jsp");
 	    return mv;
 	  }
 
