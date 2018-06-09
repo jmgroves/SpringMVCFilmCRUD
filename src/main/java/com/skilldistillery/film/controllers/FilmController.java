@@ -46,13 +46,13 @@ public class FilmController {
 
 
 	@RequestMapping(path="delete.do", method=RequestMethod.GET)
-	public ModelAndView deleteFilm(@RequestParam("film") Film film) {
+	public ModelAndView deleteFilm(@RequestParam("film") int filmId) {
 		ModelAndView mv = new ModelAndView();
 		
-		String title = film.getTitle();
 		try {
-			mv.addObject("deletedFilm", title);
-			db.deleteFilm(film);
+			Film f = db.getFilmById(filmId);
+			mv.addObject("deletedFilm", f.getTitle());
+			db.deleteFilm(f);
 			mv.setViewName("/WEB-INF/result.jsp");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
