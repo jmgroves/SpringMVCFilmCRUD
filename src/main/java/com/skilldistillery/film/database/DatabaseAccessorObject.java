@@ -17,7 +17,10 @@ import com.skilldistillery.film.entities.Inventory;
 
 @Component
 public class DatabaseAccessorObject implements DatabaseAccessor {
-	private static String url = "jdbc:mysql://localhost:3306/sdvid";
+	private static final String url = "jdbc:mysql://localhost:3306/sdvid";
+	private static final String DRIVER = "com.mysql.jdbc.Driver";
+	private static final String user = "student";
+	private static final String pwd = "student";
     static {
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -75,6 +78,57 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		}
 		return film;
 	}
+	@Override
+	public Film updateFilm(Film existingFilm, Film updatedFilmProperties) throws SQLException {
+		StringBuilder sql = new StringBuilder(
+				"UPDATE film ");
+		sql.append(" SET  title = ?, description = ?, release_year = ?,language_id = ?,rental_duration = ?");
+		sql.append(" WHERE id = ? " );
+		
+		Connection conn = DriverManager.getConnection(url,  user,  pwd);
+		PreparedStatement stmt = conn.prepareStatement(sql.toString());
+		try {
+			conn.setAutoCommit(false); // START TRANSACTION
+		
+			stmt.setString(1, updatedFilmProperties.getTitle());
+			stmt.setString(2, updatedFilmProperties.getDescription());
+			stmt.setInt(3, updatedFilmProperties.getReleaseYear());
+			stmt.setInt(4, 1);  // English
+			stmt.setInt(5, updatedFilmProperties.getRentalDuration());
+			stmt.setInt(6, existingFilm.getId());
+			
+			System.out.println(stmt);
+			
+		//	System.out.println(stmt);
+
+			if (stmt.executeUpdate() != 1) {
+				existingFilm = null;
+				conn.rollback(); 
+			}
+			else
+			{
+				existingFilm.setTitle(updatedFilmProperties.getTitle());
+				existingFilm.setDescription(updatedFilmProperties.getDescription());
+				existingFilm.setReleaseYear(updatedFilmProperties.getReleaseYear());
+				existingFilm.setLanguageId(updatedFilmProperties.getLanguageId());
+				existingFilm.setRentalDuration(updatedFilmProperties.getRentalDuration());
+				conn.commit();
+			}
+		} catch (SQLException sqle) {
+			// https://stackoverflow.com/questions/15761791/transaction-rollback-on-sqlexception-using-new-try-with-resources-block?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
+			sqle.printStackTrace();
+			if (conn != null) {
+				try {
+					conn.rollback();
+				} catch (SQLException sqle2) {
+					System.err.println("Error trying to rollback");
+				}
+			}
+			throw new RuntimeException("Error updating film " + existingFilm);
+		}
+		conn.close();
+		return existingFilm;
+	} 
 
 	@Override
 	public Actor getActorById(int actorId) throws SQLException {
