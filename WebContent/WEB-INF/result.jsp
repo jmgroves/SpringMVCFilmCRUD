@@ -10,11 +10,31 @@
 <title>View</title>
 </head>
 <body>
-	<form action="edit.do" method="GET">
-     <input type="submit" value="Edit Film" name = "edit"/><br />
-	</form>
+	<form:form action="edit.do" method="POST" modelAttribute = "film">
+	<form:label path="title">Title: </form:label>
+	<form:input path="title"/>
+	<form:errors path="title" />
+	<br>
+	<form:label path="description">Description: </form:label>
+	<form:input path="description"/>
+	<form:errors path="description" />
+	<br>
+	<form:label path="firstName">Special Features: </form:label>
+	<form:input path="firstName"/>
+	<form:errors path="firstName" />
+	<br>
+	<form:label path="lastName">Last Name: </form:label>
+	<form:input path="lastName"/>
+	<form:errors path="lastName" />
+	<br>
+	<form:label path="age">Age: </form:label>
+	<form:input path="age"/>
+	<form:errors path="age" />
+	<br>
+	<input type="submit" value="Register" />
+	</form:form>	
 	<form action="delete.do" method="GET">
-     <input type="submit" value="Delete" name = ""/><br />
+     <input type="submit" value="Delete" name = "delete"/><br />
      <input type="hidden" name="filmId" value="${film.id}" />
 	</form>
 	<c:choose>
