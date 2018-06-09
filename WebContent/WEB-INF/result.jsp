@@ -10,7 +10,7 @@
 <title>View</title>
 </head>
 <body>
-<%-- 	<form:form action="edit.do" method="POST" modelAttribute = "film">
+ <%-- 	<form:form action="edit.do" method="POST" modelAttribute = "film">
 	<form:label path="title">Title: </form:label>
 	<form:input path="title"/>
 	<form:errors path="title" />
