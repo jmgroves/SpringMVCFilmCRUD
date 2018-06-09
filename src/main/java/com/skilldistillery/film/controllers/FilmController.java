@@ -46,11 +46,11 @@ public class FilmController {
 
 
 	@RequestMapping(path="delete.do", method=RequestMethod.GET)
-	public ModelAndView deleteFilm(@RequestParam("film") int filmId) {
+	public ModelAndView deleteFilm(@RequestParam("film") String film) {
 		ModelAndView mv = new ModelAndView();
-		
+		int filmId2 = Integer.parseInt(film);
 		try {
-			Film f = db.getFilmById(filmId);
+			Film f = db.getFilmById(filmId2);
 			mv.addObject("deletedFilm", f.getTitle());
 			db.deleteFilm(f);
 			mv.setViewName("/WEB-INF/result.jsp");
