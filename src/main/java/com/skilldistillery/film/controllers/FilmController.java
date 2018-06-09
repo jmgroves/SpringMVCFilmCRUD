@@ -39,18 +39,18 @@ public class FilmController {
 		}
 	    return mv;
 	  }
-	@RequestMapping(path="result.do", method=RequestMethod.GET)
-	  public ModelAndView viewFilmBySearch(String search) {
-	    ModelAndView mv = new ModelAndView();
-	    List<Film> f;
-		try {
-			f = db.getFilmBySearch(search);
-			mv.addObject("film", f);
-			mv.setViewName("/WEB-INF/searchresult.jsp");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	    return mv;
-	  }
+//	@RequestMapping(path="result.do", method=RequestMethod.GET)
+//	  public ModelAndView viewFilmBySearch(String search) {
+//	    ModelAndView mv = new ModelAndView();
+//	    List<Film> f;
+//		try {
+//			f = db.getFilmBySearch(search);
+//			mv.addObject("filmList", f);
+//			mv.setViewName("/WEB-INF/searchresult.jsp");
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	    return mv;
+//	  }
 }
