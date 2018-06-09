@@ -10,7 +10,7 @@
 <title>View</title>
 </head>
 <body>
-	<form:form action="edit.do" method="POST" modelAttribute = "film">
+<%-- 	<form:form action="edit.do" method="POST" modelAttribute = "film">
 	<form:label path="title">Title: </form:label>
 	<form:input path="title"/>
 	<form:errors path="title" />
@@ -36,7 +36,7 @@
 	<form action="delete.do" method="GET">
      <input type="submit" value="Delete" name = "delete"/><br />
      <input type="hidden" name="filmId" value="${film.id}" />
-	</form>
+	</form> --%>
 	<c:choose>
 	<c:when test="${not empty deletedFilm}">You deleted ${deletedFilm}</c:when>
 	<c:when test="${not empty updatedFilm}">You updated ${updatedFilm.title}</c:when>

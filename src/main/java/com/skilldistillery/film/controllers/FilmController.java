@@ -46,9 +46,9 @@ public class FilmController {
 
 
 	@RequestMapping(path="delete.do", method=RequestMethod.GET)
-	public ModelAndView deleteFilm(@RequestParam("film") String film) {
+	public ModelAndView deleteFilm(@RequestParam("filmId") String filmId) {
 		ModelAndView mv = new ModelAndView();
-		int filmId2 = Integer.parseInt(film);
+		int filmId2 = Integer.parseInt(filmId);
 		try {
 			Film f = db.getFilmById(filmId2);
 			mv.addObject("deletedFilm", f.getTitle());
