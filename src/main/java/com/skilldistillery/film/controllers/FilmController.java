@@ -47,7 +47,7 @@ public class FilmController {
 	
 
 //We pass in filmID param and use that to get the proper film to delete
-	@RequestMapping(path="delete.do", method=RequestMethod.GET)
+	@RequestMapping(path="deleteFilm.do", method=RequestMethod.GET)
 	public ModelAndView deleteFilm(@RequestParam("filmId") String filmId) {
 		ModelAndView mv = new ModelAndView();
 		int filmId2 = Integer.parseInt(filmId);
@@ -106,10 +106,18 @@ public class FilmController {
 	    return mv;
 	  }
 	@RequestMapping(path="updateFilm.do", method=RequestMethod.GET, name ="updateFilm")
-	  public ModelAndView displayEditPage(){
-	    ModelAndView mv = new ModelAndView();	    
-		mv.setViewName("/WEB-INF/updateFilm.jsp");
-	    return mv;
+	public ModelAndView updateFilm(@RequestParam("filmId") String filmId) {
+	    ModelAndView mv = new ModelAndView();	
+	    int filmIdString = Integer.parseInt(filmId);
+		try {
+			Film f = db.getFilmById(filmIdString);
+			mv.addObject("oldFilm", f);
+			mv.setViewName("/WEB-INF/updateFilm.jsp");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return mv;
 	  }
 //	@RequestMapping(path="edit.do", method=RequestMethod.POST, name ="updateFilm")
 

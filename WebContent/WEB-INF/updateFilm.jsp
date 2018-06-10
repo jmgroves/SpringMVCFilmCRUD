@@ -13,18 +13,18 @@
 
 
 <form action="updateFilmDetails.do" method="POST">
-Title <input type="text" name="title" value="{$oldFilm.title">
-Description <input type="text" name="description" value="{$oldFilm.description">
-Special Features <input type="text" name="specialFeatures" value="{$oldFilm.specialFeatures">
-Release Year <input type="number" name="releaseYear" value="{$oldFilm.releaseYear">
-Duration <input type="number" name="rentalDuration" value="{$oldFilm.rentalDuration">
-Rental Rates <input type="number" name="rentalRates" value="{$oldFilm.rentalRates">
-Length <input type="number" name="length" value="{$oldFilm.length">
-Replacement Cost <input type="number" name="replacementCost" value="{$oldFilm.replacementCost">
-Category <input type="text" name="category" value="{$oldFilm.category">
+Title <input type="text" name="title" value="${oldFilm.title}"><br>
+Description <input type="text" name="description" value="${oldFilm.description}"><br>
+Special Features <input type="text" name="specialFeatures" value="${oldFilm.specialFeatures}"><br>
+Release Year <input type="number" name="releaseYear" value="${oldFilm.releaseYear}"><br>
+Duration <input type="number" name="rentalDuration" value="${oldFilm.rentalDuration}"><br>
+Rental Rates <input type="number" name="rentalRates" value="${oldFilm.rentalRates}"><br>
+Length <input type="number" name="length" value="${oldFilm.length}"><br>
+Replacement Cost <input type="number" name="replacementCost" value="${oldFilm.replacementCost}"><br>
+Category <input type="text" name="category" value="${oldFilm.category}"><br>
 	<input type="submit" value="Update Film" /></form>
 
- 
+ <br><br>
 
 	<div><a href="index.html">Home</a></div>
 	

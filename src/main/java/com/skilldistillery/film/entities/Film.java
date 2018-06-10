@@ -15,7 +15,7 @@ public class Film {
 	private String rating;
 	private String specialFeatures;
 	private List<Actor> actorList;
-	private List<String> categories;
+	private String categories;
 	
 	public Film() {		
 	}
@@ -204,11 +204,11 @@ public class Film {
 		return true;
 	}
 
-	public List<String> getCategories() {
+	public String getCategories() {
 		return categories;
 	}
 
-	public void setCategories(List<String> categories) {
+	public void setCategories(String categories) {
 		this.categories = categories;
 	}
 }

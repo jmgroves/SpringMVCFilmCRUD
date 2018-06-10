@@ -47,7 +47,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		sqltext = "SELECT film.id, title, description, release_year, language.name, rental_duration, rental_rate, length, replacement_cost, rating, special_features FROM film JOIN language ON language.id = language_id WHERE film.id = ?";
 		PreparedStatement stmt = conn.prepareStatement(sqltext);
 		stmt.setInt(1, filmId);
-		List<String> categories = new ArrayList<>();
+		String categories = "";
 
 		ResultSet rs = stmt.executeQuery();
 		Film film = new Film();
@@ -73,7 +73,6 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		stmt.setInt(1, filmId);
 		rs = stmt.executeQuery();
 		if (rs.next()) {
-			categories.add(rs.getString(1));
 			film.setCategories(categories);
 		}
 		return film;
@@ -95,7 +94,12 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			stmt.setInt(3, updatedFilm.getReleaseYear());
 			stmt.setInt(4, 1);  // English
 			stmt.setInt(5, updatedFilm.getRentalDuration());
-			stmt.setInt(6, oldFilm.getId());
+			stmt.setDouble(6, updatedFilm.getRentalRates());
+			stmt.setInt(7, updatedFilm.getLength());
+			stmt.setDouble(8, updatedFilm.getReplacementCost());
+			stmt.setString(9, updatedFilm.getRating());
+			stmt.setDouble(10, updatedFilm.getReplacementCost());
+			stmt.setInt(11, oldFilm.getId());
 			
 			System.out.println(stmt);
 			
