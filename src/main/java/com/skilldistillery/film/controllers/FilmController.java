@@ -32,6 +32,7 @@ public class FilmController {
 	@RequestMapping(path="result.do", method=RequestMethod.GET, name = "filmId")
 	  public ModelAndView viewFilmById(int filmId) {
 	    ModelAndView mv = new ModelAndView();
+
 	    Film f;
 		try {
 			f = db.getFilmById(filmId);
@@ -110,11 +111,11 @@ public class FilmController {
 		mv.setViewName("/WEB-INF/edit.jsp");
 	    return mv;
 	  }
-	@RequestMapping(path="edit.do", method=RequestMethod.GET, name ="updateFilm")
-	  public ModelAndView updateFilm(Film existingFilm, Film updatedFilmProperties){
-	    ModelAndView mv = new ModelAndView();	    
-		mv.setViewName("/WEB-INF/result.jsp");
-	    return mv;
-	  }
+//	@RequestMapping(path="edit.do", method=RequestMethod.GET, name ="updateFilm")
+//	  public ModelAndView updateFilm(Film existingFilm, Film updatedFilmProperties){
+//	    ModelAndView mv = new ModelAndView();	    
+//		mv.setViewName("/WEB-INF/result.jsp");
+//	    return mv;
+//	  }
 
 }
