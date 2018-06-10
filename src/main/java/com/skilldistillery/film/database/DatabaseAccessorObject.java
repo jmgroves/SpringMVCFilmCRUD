@@ -79,7 +79,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		return film;
 	}
 	@Override
-	public Film updateFilm(Film existingFilm, Film updatedFilmProperties) throws SQLException {
+	public Film updateFilm(Film oldFilm, Film updatedFilm) throws SQLException {
 		StringBuilder sql = new StringBuilder(
 				"UPDATE film ");
 		sql.append(" SET  title = ?, description = ?, release_year = ?,language_id = ?,rental_duration = ?");
@@ -90,28 +90,28 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		try {
 			conn.setAutoCommit(false); // START TRANSACTION
 		
-			stmt.setString(1, updatedFilmProperties.getTitle());
-			stmt.setString(2, updatedFilmProperties.getDescription());
-			stmt.setInt(3, updatedFilmProperties.getReleaseYear());
+			stmt.setString(1, updatedFilm.getTitle());
+			stmt.setString(2, updatedFilm.getDescription());
+			stmt.setInt(3, updatedFilm.getReleaseYear());
 			stmt.setInt(4, 1);  // English
-			stmt.setInt(5, updatedFilmProperties.getRentalDuration());
-			stmt.setInt(6, existingFilm.getId());
+			stmt.setInt(5, updatedFilm.getRentalDuration());
+			stmt.setInt(6, oldFilm.getId());
 			
 			System.out.println(stmt);
 			
 		//	System.out.println(stmt);
 
 			if (stmt.executeUpdate() != 1) {
-				existingFilm = null;
+				oldFilm = null;
 				conn.rollback(); 
 			}
 			else
 			{
-				existingFilm.setTitle(updatedFilmProperties.getTitle());
-				existingFilm.setDescription(updatedFilmProperties.getDescription());
-				existingFilm.setReleaseYear(updatedFilmProperties.getReleaseYear());
-				existingFilm.setLanguageId(updatedFilmProperties.getLanguageId());
-				existingFilm.setRentalDuration(updatedFilmProperties.getRentalDuration());
+				oldFilm.setTitle(updatedFilm.getTitle());
+				oldFilm.setDescription(updatedFilm.getDescription());
+				oldFilm.setReleaseYear(updatedFilm.getReleaseYear());
+				oldFilm.setLanguageId(updatedFilm.getLanguageId());
+				oldFilm.setRentalDuration(updatedFilm.getRentalDuration());
 				conn.commit();
 			}
 		} catch (SQLException sqle) {
@@ -124,10 +124,10 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 					System.err.println("Error trying to rollback");
 				}
 			}
-			throw new RuntimeException("Error updating film " + existingFilm);
+			throw new RuntimeException("Error updating film " + oldFilm);
 		}
 		conn.close();
-		return existingFilm;
+		return oldFilm;
 	} 
 
 	@Override

@@ -22,7 +22,7 @@
 		<li>Actors: ${film.actorList }</li>
 		<li>Category: ${film.categories }</li>
 	</ul>
-		<form action="edit.do" method="GET">
+		<form action="updateFilm.do" method="GET">
      <input type="submit" value="Update" name = ""/><br />
      <input type="hidden" name="filmId" value="${film.id}" />
 	</form>
