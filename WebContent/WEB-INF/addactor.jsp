@@ -12,7 +12,8 @@
 <body>
 
 
-<h2>Actor added successfully</h2>
+<h2>${actor.firstName } ${actor.lastName } was added successfully.</h2>
+	<h3>Actor Id: ${actor.id }</h3>
 	<div>
 		<a href="index.html">Home</a>
 	</div>

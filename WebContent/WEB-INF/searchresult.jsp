@@ -31,6 +31,9 @@
      <input type="hidden" name="filmId" value="${film.id}" />
 	</form>
 </c:forEach>
+	<div>
+		<a href="index.html">Home</a>
+	</div>
 
 </body>
 </html>
