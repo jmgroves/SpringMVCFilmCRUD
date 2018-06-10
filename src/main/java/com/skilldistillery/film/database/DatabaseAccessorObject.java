@@ -82,7 +82,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	public Film updateFilm(Film oldFilm, Film updatedFilm) throws SQLException {
 		StringBuilder sql = new StringBuilder(
 				"UPDATE film ");
-		sql.append(" SET  title = ?, description = ?, release_year = ?,language_id = ?,rental_duration = ?");
+		sql.append(" SET  title = ?, description = ?, release_year = ?,language_id = ?,rental_duration = ?, rental_rates = ?, length = ?, replacement_cost = ?, rating = ?, special_features = ?");
 		sql.append(" WHERE id = ? " );
 		
 		Connection conn = DriverManager.getConnection(url,  user,  pwd);
