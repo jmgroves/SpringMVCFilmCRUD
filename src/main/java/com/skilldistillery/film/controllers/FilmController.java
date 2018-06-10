@@ -104,6 +104,21 @@ public class FilmController {
 		}
 		return mv;
 	  }
+	  @RequestMapping(path = "updateFilmDetails.do", method = RequestMethod.POST)
+	    public ModelAndView updateFilmDetails(Film oldFilm, @RequestParam(name = "filmId") int filmId) {
+	        ModelAndView mv = new ModelAndView();
+	        System.out.println(filmId);
+	        System.out.println(oldFilm);
+	        Film updatedFilm = new Film();
+	        try {
+				db.updateFilm(oldFilm, updatedFilm);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+	        mv.addObject("film", updatedFilm);
+	        mv.setViewName("WEB-INF/result.jsp");
+	        return mv;
+	    }
 //	@RequestMapping(path="edit.do", method=RequestMethod.POST, name ="updateFilm")
 	@RequestMapping(path="updateActor.do", method=RequestMethod.GET)
 	public ModelAndView editFilm(Film oldFilm, Film updatedFilm) {

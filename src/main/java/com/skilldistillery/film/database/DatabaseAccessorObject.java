@@ -98,7 +98,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			stmt.setInt(7, updatedFilm.getLength());
 			stmt.setDouble(8, updatedFilm.getReplacementCost());
 			stmt.setString(9, updatedFilm.getRating());
-			stmt.setDouble(10, updatedFilm.getReplacementCost());
+			stmt.setString(10, updatedFilm.getSpecialFeatures());
 			stmt.setInt(11, oldFilm.getId());
 			
 			System.out.println(stmt);
@@ -115,6 +115,11 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 				oldFilm.setDescription(updatedFilm.getDescription());
 				oldFilm.setReleaseYear(updatedFilm.getReleaseYear());
 				oldFilm.setLanguageId(updatedFilm.getLanguageId());
+				oldFilm.setRentalDuration(updatedFilm.getRentalDuration());
+				oldFilm.setRating(updatedFilm.getRating());
+				oldFilm.setReplacementCost(updatedFilm.getReplacementCost());
+				oldFilm.setLength(updatedFilm.getLength());
+				oldFilm.setSpecialFeatures(updatedFilm.getSpecialFeatures());
 				oldFilm.setRentalDuration(updatedFilm.getRentalDuration());
 				conn.commit();
 			}

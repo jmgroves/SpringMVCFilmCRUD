@@ -13,9 +13,11 @@
 
 
 <form action="updateFilmDetails.do" method="POST">
+Film Id <input type="text" name="filmId" value="${oldFilm.id}"><br>
 Title <input type="text" name="title" value="${oldFilm.title}"><br>
 Description <input type="text" name="description" value="${oldFilm.description}"><br>
 Special Features <input type="text" name="specialFeatures" value="${oldFilm.specialFeatures}"><br>
+Rating <input type="text" name="rating" value="${oldFilm.rating}"><br>
 Release Year <input type="text" name="releaseYear" value="${oldFilm.releaseYear}"><br>
 Duration <input type="text" name="rentalDuration" value="${oldFilm.rentalDuration}"><br>
 Rental Rates <input type="text" name="rentalRates" value="${oldFilm.rentalRates}"><br>
