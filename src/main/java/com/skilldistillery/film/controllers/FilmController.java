@@ -121,9 +121,10 @@ public class FilmController {
 	        return mv;
 	    }
 	@RequestMapping(path="updateActor.do", method=RequestMethod.GET)
-	public ModelAndView editActor(Actor oldActor, Actor newActor) throws SQLException {
+	public ModelAndView editActor(@RequestParam(name = "actorID") String actorID, Actor actor) throws SQLException {
 		ModelAndView mv = new ModelAndView();
-		Actor newActor2 = db.updateActor(oldActor, newActor);
+		int actorID2 = Integer.parseInt(actorID);
+		Actor newActor2 = db.updateActor(actorID2, actor);
 		mv.addObject("actor,", newActor2);
 		mv.setViewName("/WEB-INF/viewActor.jsp");
 		return mv;
@@ -152,10 +153,10 @@ public class FilmController {
 	    return mv;
 	  }
 	@RequestMapping(path="updateActorView.do", method=RequestMethod.GET, name ="updateActor")
-	public ModelAndView updateActorView() {
+	public ModelAndView updateActorView(int actorId) throws SQLException {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("actor");
-		mv.addObject("newActor");
+		Actor actor = db.getActorById(actorId);
+		mv.addObject("actor", actor);
 		mv.setViewName("/WEB-INF/updateActor.jsp");
 		return mv;
 	}

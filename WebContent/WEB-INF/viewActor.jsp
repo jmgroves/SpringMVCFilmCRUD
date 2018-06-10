@@ -31,11 +31,11 @@
 			<br />
 			<form action="deleteActor.do" method="GET">
 				<input type="submit" value="Delete" name="" /><br /> <input
-					type="hidden" name="filmId" value="${actor.id}" />
+					type="hidden" name="actorId" value="${actor.id}" />
 			</form>
 			<form action="updateActorView.do" method="GET">
 				<input type="submit" value="Update" name="" /><br /> <input
-					type="hidden" name="filmId" value="${film.id}" />
+					type="hidden" name="actorId" value="${actor.id}" />
 			</form>
 		</c:otherwise>
 	</c:choose>

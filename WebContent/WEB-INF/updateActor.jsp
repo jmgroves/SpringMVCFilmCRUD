@@ -17,11 +17,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="updateActor.do" method="GET">
-First Name: <input type="text" name="firstName" value="${newActor.firstName}"><br>
-Last Name: <input type="text" name="lastName" value="${newActor.lastName}"><br>
-	<input type="submit" value="Update Actor" /> <input type="hidden" name="newActor" value="${newActor}" />
+<h2>Actor ID: ${actor.id }</h2>
+<form action="updateActor.do" method=GET>
+First Name: <input type="text" name="firstName" value="${actor.firstName}"><br>
+Last Name: <input type="text" name="lastName" value="${actor.lastName}"><br>
+	 <input type="hidden" name="actorID" value="${actor.id}" />
 	 <input type="hidden" name="actor" value="${actor}" />
+	<input type="submit" value="Update Actor" /> 
 	</form>
 
  <br><br>

@@ -399,26 +399,28 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	}
 
 	@Override
-	public Actor updateActor(Actor oldActor, Actor newActor) {
+	public Actor updateActor(int actorID, Actor newActor) {
 		Connection conn = null;
 		String user = "student";
 		String pass = "student";
+		newActor.setId(actorID);
 		try {
 			conn = DriverManager.getConnection(url, user, pass);
 			conn.setAutoCommit(false); // START TRANSACTION
-			String sql = "Update actor first_name = \"?\", last_name = \"?\" where id = ? ";
+			String sql = "Update actor set first_name = ?, last_name = ? where id = ? ";
 			PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, newActor.getFirstName());
 			stmt.setString(2, newActor.getLastName());
-			stmt.setInt(3, oldActor.getId());
-			newActor.setId(oldActor.getId());
+			stmt.setInt(3, newActor.getId());
 			int updateResult = stmt.executeUpdate();
 			if (updateResult != 1) {
-				oldActor = null;
+				newActor = null;
 				conn.rollback();
+				System.out.println("rollback********************************");
 			} else {
 
 				conn.commit();
+				System.out.println("commit*********************************");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
