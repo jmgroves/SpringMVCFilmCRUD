@@ -63,22 +63,6 @@ public class FilmController {
 		return mv;
 	}
 //editing filmfilm -> non functional
-	@RequestMapping(path="edit.do", method=RequestMethod.GET)
-	public ModelAndView editFilm(Film oldFilm, Film updatedFilm) {
-		ModelAndView mv = new ModelAndView();
-		Film f = oldFilm;
-		Film f2 = updatedFilm;
-		try {
-			db.updateFilm(oldFilm, updatedFilm);
-			mv.addObject("film", f);
-			mv.addObject("newFilm", f);
-			mv.setViewName("/WEB-INF/result.jsp");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return mv;
-	}
 //We pass in a string that is queried using % around the string to detect the word in desc or title 
 	@RequestMapping(path="searchresult.do", method=RequestMethod.GET, name ="filmKeyword")
 	  public ModelAndView viewFilmBySearch(String filmKeyword) {
@@ -102,7 +86,8 @@ public class FilmController {
 	    actor.setLastName(lastName);
 		db.addActor(actor);
 		mv.addObject("actor", actor);
-		mv.setViewName("/WEB-INF/addactor.jsp");
+		mv.addObject("addedActor", actor);
+		mv.setViewName("/WEB-INF/viewActor.jsp");
 	    return mv;
 	  }
 	@RequestMapping(path="updateFilm.do", method=RequestMethod.GET, name ="updateFilm")
@@ -120,6 +105,35 @@ public class FilmController {
 		return mv;
 	  }
 //	@RequestMapping(path="edit.do", method=RequestMethod.POST, name ="updateFilm")
+	@RequestMapping(path="updateActor.do", method=RequestMethod.GET)
+	public ModelAndView editFilm(Film oldFilm, Film updatedFilm) {
+		ModelAndView mv = new ModelAndView();
+		Film f = oldFilm;
+		Film f2 = updatedFilm;
+		try {
+			db.updateFilm(oldFilm, updatedFilm);
+			mv.addObject("film", f);
+			mv.addObject("newFilm", f);
+			mv.setViewName("/WEB-INF/result.jsp");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return mv;
+	}
+	@RequestMapping(path="viewActor.do", method = RequestMethod.GET)
+	public ModelAndView viewActor(int actorId) {
+		ModelAndView mv = new ModelAndView();
+		try {
+			Actor actor = db.getActorById(actorId);
+			mv.addObject("actor", actor);
+			mv.setViewName("/WEB-INF/viewActor.jsp");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return mv;
+	}
 
 	  
 //	@RequestMapping(path="edit.do", method=RequestMethod.GET, name ="updateFilm")
