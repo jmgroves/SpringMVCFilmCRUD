@@ -79,41 +79,41 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	}
 
 	@Override
-	public Film updateFilm(Film oldFilm, Film updatedFilm) throws SQLException {
+	public Film updateFilm(Film film) throws SQLException {
 		StringBuilder sql = new StringBuilder("UPDATE film ");
 		sql.append(
-				" SET  title = ?, description = ?, release_year = ?,rental_duration = ?, rental_rates = ?, language_id = ?, length = ?, replacement_cost = ?, rating = ?, special_features = ? WHERE id = ?");
+				" SET  title = ?, description = ?, release_year = ?, rental_duration = ?, rental_rate = ?, language_id = ?, length = ?, replacement_cost = ?, rating = ?, special_features = ? WHERE id = ?");
 
 		Connection conn = DriverManager.getConnection(url, user, pwd);
 		PreparedStatement stmt = conn.prepareStatement(sql.toString());
-		oldFilm.setId(updatedFilm.getId());
-		oldFilm.setLanguageId(updatedFilm.getLanguageId());
 
 		try {
 			conn.setAutoCommit(false); // START TRANSACTION
 
-			stmt.setString(1, updatedFilm.getTitle());
-			stmt.setString(2, updatedFilm.getDescription());
-			stmt.setInt(3, updatedFilm.getReleaseYear());
-			stmt.setInt(4, updatedFilm.getRentalDuration());
-			stmt.setDouble(5, updatedFilm.getRentalRates());
+			stmt.setString(1, film.getTitle());
+			stmt.setString(2, film.getDescription());
+			stmt.setInt(3, film.getReleaseYear());
+			stmt.setInt(4, film.getRentalDuration());
+			stmt.setDouble(5, film.getRentalRates());
 			stmt.setInt(6, 1);
-			stmt.setInt(7, updatedFilm.getLength());
-			stmt.setDouble(8, updatedFilm.getReplacementCost());
-			stmt.setString(9, updatedFilm.getRating());
-			stmt.setString(10, updatedFilm.getSpecialFeatures());
-			stmt.setInt(11, oldFilm.getId());
+			stmt.setInt(7, film.getLength());
+			stmt.setDouble(8, film.getReplacementCost());
+			stmt.setString(9, film.getRating());
+			stmt.setString(10, film.getSpecialFeatures());
+			stmt.setInt(11, film.getId());
 
 			System.out.println(stmt);
 			int updateCount = stmt.executeUpdate();
 			// System.out.println(stmt);
 
 			if (updateCount != 1) {
-				oldFilm = null;
+				film = null;
 				conn.rollback();
+				System.out.println("rollback");
 			} else {
 
 				conn.commit();
+				System.out.println("commit");
 			}
 		} catch (SQLException sqle) {
 			// https://stackoverflow.com/questions/15761791/transaction-rollback-on-sqlexception-using-new-try-with-resources-block?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
@@ -125,10 +125,10 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 					System.err.println("Error trying to rollback");
 				}
 			}
-			throw new RuntimeException("Error updating film " + oldFilm);
+			throw new RuntimeException("Error updating film " + film);
 		}
 		conn.close();
-		return updatedFilm;
+		return film;
 	}
 
 	@Override

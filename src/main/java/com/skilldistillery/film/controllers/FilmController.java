@@ -92,10 +92,12 @@ public class FilmController {
 	  }
 	@RequestMapping(path="updateFilm.do", method=RequestMethod.GET, name ="updateFilm")
 	public ModelAndView updateFilm(@RequestParam("filmId") String filmId) {
-	    ModelAndView mv = new ModelAndView();	
+	    ModelAndView mv = new ModelAndView();
+	    System.out.println(filmId);
 	    int filmIdString = Integer.parseInt(filmId);
 		try {
 			Film f = db.getFilmById(filmIdString);
+			f.setId(filmIdString);
 			mv.addObject("oldFilm", f);
 			mv.setViewName("/WEB-INF/updateFilm.jsp");
 		} catch (SQLException e) {
@@ -105,14 +107,17 @@ public class FilmController {
 		return mv;
 	  }
 	  @RequestMapping(path = "updateFilmDetails.do", method = RequestMethod.POST)
-	    public ModelAndView updateFilmDetails(Film oldFilm, @RequestParam(name = "filmId") int filmId) {
+	    public ModelAndView updateFilmDetails(@RequestParam(name = "filmID") String filmID, Film film) throws SQLException {
 	        ModelAndView mv = new ModelAndView();
-	        System.out.println(filmId);
-	        System.out.println(oldFilm);
-	        Film updatedFilm = new Film();
-	        updatedFilm.setId(filmId);
+	        int filmId2 = Integer.parseInt(filmID);
+	        System.out.println(filmID + "***************************");
+	        System.out.println(film);
+	        film.setId(filmId2);
+	        Film updatedFilm = film;
+	        System.out.println(film.getId());
+	   //     updatedFilm.setId(filmId2);
 	        try {
-				updatedFilm = db.updateFilm(oldFilm, updatedFilm);
+				updatedFilm = db.updateFilm(film);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

@@ -16,6 +16,6 @@ public interface DatabaseAccessor {
   public Film addFilm(Film film) throws SQLException;
   public boolean deleteFilm(Film film) throws SQLException;
   public Actor addActor(Actor actor);
-  public Film updateFilm(Film existingFilm, Film updatedFilmProperties) throws SQLException;
+  public Film updateFilm(Film film) throws SQLException;
 public Actor updateActor(int actorID, Actor newActor);
 }

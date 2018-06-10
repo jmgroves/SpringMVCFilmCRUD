@@ -20,7 +20,7 @@
 <title>View</title>
 </head>
 <body>
-
+<h2>Film ID: ${oldFilm.id }</h2>
 
 <form action="updateFilmDetails.do" method="POST">
 Title <input type="text" name="title" value="${oldFilm.title}"><br>
@@ -33,8 +33,9 @@ Rental Rates <input type="text" name="rentalRates" value="${oldFilm.rentalRates}
 Length <input type="text" name="length" value="${oldFilm.length}"><br>
 Replacement Cost <input type="text" name="replacementCost" value="${oldFilm.replacementCost}"><br>
 Category <input type="text" name="category" value="${oldFilm.categories}"><br>
+	<input type="hidden" name="filmID" value="${oldFilm.id}"/>
+	<input type="hidden" name="film" value="${oldFilm}"/>
 	<input type="submit" value="Update Film"/>
-	<input type="hidden" name="filmId" value="${oldFilm.id }">
 	</form>
 	
 
