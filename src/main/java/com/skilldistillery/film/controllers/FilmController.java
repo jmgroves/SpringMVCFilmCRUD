@@ -110,6 +110,7 @@ public class FilmController {
 	        System.out.println(filmId);
 	        System.out.println(oldFilm);
 	        Film updatedFilm = new Film();
+	        updatedFilm.setId(filmId);
 	        try {
 				db.updateFilm(oldFilm, updatedFilm);
 			} catch (SQLException e) {
@@ -123,12 +124,10 @@ public class FilmController {
 	@RequestMapping(path="updateActor.do", method=RequestMethod.GET)
 	public ModelAndView editFilm(Film oldFilm, Film updatedFilm) {
 		ModelAndView mv = new ModelAndView();
-		Film f = oldFilm;
 		Film f2 = updatedFilm;
 		try {
 			db.updateFilm(oldFilm, updatedFilm);
-			mv.addObject("film", f);
-			mv.addObject("newFilm", f);
+			mv.addObject("film,", f2);
 			mv.setViewName("/WEB-INF/result.jsp");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
