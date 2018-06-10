@@ -21,7 +21,7 @@ Duration <input type="number" name="rentalDuration" value="${oldFilm.rentalDurat
 Rental Rates <input type="number" name="rentalRates" value="${oldFilm.rentalRates}"><br>
 Length <input type="number" name="length" value="${oldFilm.length}"><br>
 Replacement Cost <input type="number" name="replacementCost" value="${oldFilm.replacementCost}"><br>
-Category <input type="text" name="category" value="${oldFilm.category}"><br>
+Category <input type="text" name="category" value="${oldFilm.categories}"><br>
 	<input type="submit" value="Update Film" /></form>
 
  <br><br>
