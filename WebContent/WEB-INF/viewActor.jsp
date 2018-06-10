@@ -10,18 +10,25 @@
 <title>Actor View</title>
 </head>
 <body>
-	<c:if test="${not empty addedActor }"> <h1>Actor Added Successfully</h1></c:if>
-	<h2>Actor ${actor.firstName } ${actor.lastName }</h2>
-	<h3>Actor ID: ${actor.id }</h3>
-	<br />
-	<form action="deleteActor.do" method="GET">
-		<input type="submit" value="Delete" name="" /><br /> <input
-			type="hidden" name="filmId" value="${actor.id}" />
-	</form>
-	<form action="updateActor.do" method="GET">
-		<input type="submit" value="Update" name="" /><br /> <input
-			type="hidden" name="filmId" value="${film.id}" />
-	</form>
+	<c:choose>
+		<c:when test="${not empty noActor }">Actor ID not found.</c:when>
+		<c:otherwise>
+			<c:if test="${not empty addedActor }">
+				<h1>Actor Added Successfully</h1>
+			</c:if>
+			<h2>Actor ${actor.firstName } ${actor.lastName }</h2>
+			<h3>Actor ID: ${actor.id }</h3>
+			<br />
+			<form action="deleteActor.do" method="GET">
+				<input type="submit" value="Delete" name="" /><br /> <input
+					type="hidden" name="filmId" value="${actor.id}" />
+			</form>
+			<form action="updateActor.do" method="GET">
+				<input type="submit" value="Update" name="" /><br /> <input
+					type="hidden" name="filmId" value="${film.id}" />
+			</form>
+		</c:otherwise>
+	</c:choose>
 	<div>
 		<a href="index.html">Home</a>
 	</div>

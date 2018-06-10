@@ -126,6 +126,9 @@ public class FilmController {
 		ModelAndView mv = new ModelAndView();
 		try {
 			Actor actor = db.getActorById(actorId);
+			if (actor.getId() == 0) {
+				mv.addObject("noActor", "word");
+			}
 			mv.addObject("actor", actor);
 			mv.setViewName("/WEB-INF/viewActor.jsp");
 		} catch (SQLException e) {
