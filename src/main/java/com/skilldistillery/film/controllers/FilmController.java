@@ -37,7 +37,7 @@ public class FilmController {
 		try {
 			f = db.getFilmById(filmId);
 			mv.addObject("film", f);
-			mv.setViewName("/WEB-INF/result.jsp");
+			mv.setViewName("/WEB-INF/viewFilmbyID.jsp");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -55,7 +55,7 @@ public class FilmController {
 			Film f = db.getFilmById(filmId2);
 			mv.addObject("deletedFilm", f.getTitle());
 			db.deleteFilm(f);
-			mv.setViewName("/WEB-INF/result.jsp");
+			mv.setViewName("/WEB-INF/viewFilmbyID.jsp");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -117,7 +117,7 @@ public class FilmController {
 				e.printStackTrace();
 			}
 	        mv.addObject("film", updatedFilm);
-	        mv.setViewName("WEB-INF/result.jsp");
+	        mv.setViewName("WEB-INF/viewFilmbyID.jsp");
 	        return mv;
 	    }
 	@RequestMapping(path="updateActor.do", method=RequestMethod.GET)
