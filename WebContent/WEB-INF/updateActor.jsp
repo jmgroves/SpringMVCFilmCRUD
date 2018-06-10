@@ -8,10 +8,11 @@
 </head>
 <body>
 <form action="updateActor.do" method="POST">
-Film Id <input type="text" name="filmId" value="${actor.id}"><br>
-Title <input type="text" name="title" value="${actor.firstName}"><br>
-Description <input type="text" name="description" value="${actor.lastName}"><br>
-	<input type="submit" value="Update Film" /></form>
+First Name: <input type="text" name="firstName" value="${actor.firstName}"><br>
+Last Name: <input type="text" name="lastName" value="${actor.lastName}"><br>
+	<input type="submit" value="Update Film" />
+	<input type="hidden" name="actorId" value="${actor.id}" />
+	</form>
 
  <br><br>
 </body>
