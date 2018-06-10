@@ -23,7 +23,7 @@
 				<input type="submit" value="Delete" name="" /><br /> <input
 					type="hidden" name="filmId" value="${actor.id}" />
 			</form>
-			<form action="updateActor.do" method="GET">
+			<form action="updateActorView.do" method="GET">
 				<input type="submit" value="Update" name="" /><br /> <input
 					type="hidden" name="filmId" value="${film.id}" />
 			</form>
