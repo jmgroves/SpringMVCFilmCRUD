@@ -56,8 +56,12 @@
 
 			</ul>
 			<br />
-			<form action="delete.do" method="GET">
+			<form action="deleteFilm.do" method="GET">
 				<input type="submit" value="Delete" name="" /><br /> <input
+					type="hidden" name="filmId" value="${film.id}" />
+			</form>
+			<form action="updateFilm.do" method="GET">
+				<input type="submit" value="Update" name="" /><br /> <input
 					type="hidden" name="filmId" value="${film.id}" />
 			</form>
 
