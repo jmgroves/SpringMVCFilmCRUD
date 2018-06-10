@@ -406,11 +406,12 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		try {
 			conn = DriverManager.getConnection(url, user, pass);
 			conn.setAutoCommit(false); // START TRANSACTION
-			String sql = "Update actor first_name = ?, last_name = ? where id = ? ";
+			String sql = "Update actor first_name = \"?\", last_name = \"?\" where id = ? ";
 			PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, newActor.getFirstName());
 			stmt.setString(2, newActor.getLastName());
 			stmt.setInt(3, oldActor.getId());
+			newActor.setId(oldActor.getId());
 			int updateResult = stmt.executeUpdate();
 			if (updateResult != 1) {
 				oldActor = null;

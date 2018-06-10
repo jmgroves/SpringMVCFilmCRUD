@@ -151,10 +151,11 @@ public class FilmController {
 		mv.setViewName("/WEB-INF/addactor.jsp");
 	    return mv;
 	  }
-	@RequestMapping(path="updateActorView.do", method=RequestMethod.GET, name ="addActor")
+	@RequestMapping(path="updateActorView.do", method=RequestMethod.GET, name ="updateActor")
 	public ModelAndView updateActorView() {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("actor");
+		mv.addObject("newActor");
 		mv.setViewName("/WEB-INF/updateActor.jsp");
 		return mv;
 	}

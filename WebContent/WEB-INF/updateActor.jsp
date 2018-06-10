@@ -7,10 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="updateActor.do" method="POST">
-First Name: <input type="text" name="firstName" value="${actor.firstName}"><br>
-Last Name: <input type="text" name="lastName" value="${actor.lastName}"><br>
-	<input type="submit" value="Update Film" /> <input type="hidden" name="newActor" value="${newActor}" />
+<form action="updateActor.do" method="GET">
+First Name: <input type="text" name="firstName" value="${newActor.firstName}"><br>
+Last Name: <input type="text" name="lastName" value="${newActor.lastName}"><br>
+	<input type="submit" value="Update Actor" /> <input type="hidden" name="newActor" value="${newActor}" />
+	 <input type="hidden" name="actor" value="${actor}" />
 	</form>
 
  <br><br>
