@@ -11,7 +11,7 @@
 First Name: <input type="text" name="firstName" value="${actor.firstName}"><br>
 Last Name: <input type="text" name="lastName" value="${actor.lastName}"><br>
 	<input type="submit" value="Update Film" />
-	<input type="hidden" name="actorId" value="${actor.id}" />
+	<input type="hidden" name="newActor" value="${actor }" />
 	</form>
 
  <br><br>

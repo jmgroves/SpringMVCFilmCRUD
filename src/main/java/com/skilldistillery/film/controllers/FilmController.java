@@ -120,19 +120,14 @@ public class FilmController {
 	        mv.setViewName("WEB-INF/result.jsp");
 	        return mv;
 	    }
-//	@RequestMapping(path="updateActor.do", method=RequestMethod.GET)
-//	public ModelAndView editFilm(Actor oldActor, Actor newActor) {
-//		ModelAndView mv = new ModelAndView();
-//		try {
-//			Actor newActor2 = db.updateActor(oldActor, newActor);
-//			mv.addObject("actor,", newActor2);
-//			mv.setViewName("/WEB-INF/viewActor.jsp");
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return mv;
-//	}
+	@RequestMapping(path="updateActor.do", method=RequestMethod.GET)
+	public ModelAndView editActor(Actor oldActor, Actor newActor) throws SQLException {
+		ModelAndView mv = new ModelAndView();
+		Actor newActor2 = db.updateActor(oldActor, newActor);
+		mv.addObject("actor,", newActor2);
+		mv.setViewName("/WEB-INF/viewActor.jsp");
+		return mv;
+	}
 	@RequestMapping(path="viewActor.do", method = RequestMethod.GET)
 	public ModelAndView viewActor(int actorId) {
 		ModelAndView mv = new ModelAndView();

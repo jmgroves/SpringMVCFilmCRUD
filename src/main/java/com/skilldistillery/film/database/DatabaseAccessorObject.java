@@ -21,14 +21,14 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
 	private static final String user = "student";
 	private static final String pwd = "student";
-    static {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            System.err.println("Error loading mySql driver");
-            e.printStackTrace();
-        }
-    }
+	static {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			System.err.println("Error loading mySql driver");
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	public Film getFilmById(int filmId) throws SQLException {
@@ -77,21 +77,21 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		}
 		return film;
 	}
+
 	@Override
 	public Film updateFilm(Film oldFilm, Film updatedFilm) throws SQLException {
-		StringBuilder sql = new StringBuilder(
-				"UPDATE film ");
-		sql.append(" SET  title = ?, description = ?, release_year = ?,rental_duration = ?, rental_rates = ?, language_id = ?, length = ?, replacement_cost = ?, rating = ?, special_features = ? WHERE id = ?");
-		
-		Connection conn = DriverManager.getConnection(url,  user,  pwd);
+		StringBuilder sql = new StringBuilder("UPDATE film ");
+		sql.append(
+				" SET  title = ?, description = ?, release_year = ?,rental_duration = ?, rental_rates = ?, language_id = ?, length = ?, replacement_cost = ?, rating = ?, special_features = ? WHERE id = ?");
+
+		Connection conn = DriverManager.getConnection(url, user, pwd);
 		PreparedStatement stmt = conn.prepareStatement(sql.toString());
 		oldFilm.setId(updatedFilm.getId());
 		oldFilm.setLanguageId(updatedFilm.getLanguageId());
 
-		
 		try {
 			conn.setAutoCommit(false); // START TRANSACTION
-		
+
 			stmt.setString(1, updatedFilm.getTitle());
 			stmt.setString(2, updatedFilm.getDescription());
 			stmt.setInt(3, updatedFilm.getReleaseYear());
@@ -103,17 +103,15 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			stmt.setString(9, updatedFilm.getRating());
 			stmt.setString(10, updatedFilm.getSpecialFeatures());
 			stmt.setInt(11, oldFilm.getId());
-			
-			System.out.println(stmt);
-			
-		//	System.out.println(stmt);
 
-			if (stmt.executeUpdate() != 1) {
+			System.out.println(stmt);
+			int updateCount = stmt.executeUpdate();
+			// System.out.println(stmt);
+
+			if (updateCount != 1) {
 				oldFilm = null;
-				conn.rollback(); 
-			}
-			else
-			{
+				conn.rollback();
+			} else {
 
 				conn.commit();
 			}
@@ -131,7 +129,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		}
 		conn.close();
 		return updatedFilm;
-	} 
+	}
 
 	@Override
 	public Actor getActorById(int actorId) throws SQLException {
@@ -305,7 +303,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		String pass = "student";
 		Connection conn = null;
 		try {
-			// delete child from film actor 
+			// delete child from film actor
 			// Commented code below is for deleting for existing films
 			conn = DriverManager.getConnection(url, user, pass);
 			conn.setAutoCommit(false); // START TRANSACTION
@@ -330,9 +328,8 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			// stmt = conn.prepareStatement(sql);
 			// stmt.setInt(1, film.getId());
 			// updateCount = stmt.executeUpdate();
-			
-			
-			//Code for deleting our personally added films with no crazy dependencies 
+
+			// Code for deleting our personally added films with no crazy dependencies
 
 			String sql = "DELETE FROM film WHERE id = ?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
@@ -352,6 +349,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		}
 		return true;
 	}
+
 	public Actor addActor(Actor actor) {
 		Connection conn = null;
 		String user = "student";
@@ -363,7 +361,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, actor.getFirstName());
 			stmt.setString(2, actor.getLastName());
-			
+
 			int updateCount = stmt.executeUpdate();
 			if (updateCount == 1) {
 				ResultSet keys = stmt.getGeneratedKeys();
@@ -399,8 +397,35 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		}
 		return actor;
 	}
-	
-	
 
+	@Override
+	public Actor updateActor(Actor oldActor, Actor newActor) {
+		Connection conn = null;
+		String user = "student";
+		String pass = "student";
+		try {
+			conn = DriverManager.getConnection(url, user, pass);
+			conn.setAutoCommit(false); // START TRANSACTION
+			String sql = "Update actor first_name = ?, last_name = ? where id = ? ";
+			PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			stmt.setString(1, newActor.getFirstName());
+			stmt.setString(2, newActor.getLastName());
+			stmt.setInt(3, oldActor.getId());
+			int updateResult = stmt.executeUpdate();
+			if (updateResult != 1) {
+				oldActor = null;
+				conn.rollback();
+			} else {
+
+				conn.commit();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.err.println("Error trying to update Actor");
+			e.printStackTrace();
+		}
+
+		return newActor;
+	}
 
 }
