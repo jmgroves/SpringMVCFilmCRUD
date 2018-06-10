@@ -16,11 +16,11 @@
 Title <input type="text" name="title" value="${oldFilm.title}"><br>
 Description <input type="text" name="description" value="${oldFilm.description}"><br>
 Special Features <input type="text" name="specialFeatures" value="${oldFilm.specialFeatures}"><br>
-Release Year <input type="number" name="releaseYear" value="${oldFilm.releaseYear}"><br>
-Duration <input type="number" name="rentalDuration" value="${oldFilm.rentalDuration}"><br>
-Rental Rates <input type="number" name="rentalRates" value="${oldFilm.rentalRates}"><br>
-Length <input type="number" name="length" value="${oldFilm.length}"><br>
-Replacement Cost <input type="number" name="replacementCost" value="${oldFilm.replacementCost}"><br>
+Release Year <input type="text" name="releaseYear" value="${oldFilm.releaseYear}"><br>
+Duration <input type="text" name="rentalDuration" value="${oldFilm.rentalDuration}"><br>
+Rental Rates <input type="text" name="rentalRates" value="${oldFilm.rentalRates}"><br>
+Length <input type="text" name="length" value="${oldFilm.length}"><br>
+Replacement Cost <input type="text" name="replacementCost" value="${oldFilm.replacementCost}"><br>
 Category <input type="text" name="category" value="${oldFilm.categories}"><br>
 	<input type="submit" value="Update Film" /></form>
 
