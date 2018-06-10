@@ -81,20 +81,23 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	public Film updateFilm(Film oldFilm, Film updatedFilm) throws SQLException {
 		StringBuilder sql = new StringBuilder(
 				"UPDATE film ");
-		sql.append(" SET  title = ?, description = ?, release_year = ?,language_id = ?,rental_duration = ?, rental_rates = ?, length = ?, replacement_cost = ?, rating = ?, special_features = ?");
-		sql.append(" WHERE id = ? " );
+		sql.append(" SET  title = ?, description = ?, release_year = ?,rental_duration = ?, rental_rates = ?, language_id = ?, length = ?, replacement_cost = ?, rating = ?, special_features = ? WHERE id = ?");
 		
 		Connection conn = DriverManager.getConnection(url,  user,  pwd);
 		PreparedStatement stmt = conn.prepareStatement(sql.toString());
+		oldFilm.setId(updatedFilm.getId());
+		oldFilm.setLanguageId(updatedFilm.getLanguageId());
+
+		
 		try {
 			conn.setAutoCommit(false); // START TRANSACTION
 		
 			stmt.setString(1, updatedFilm.getTitle());
 			stmt.setString(2, updatedFilm.getDescription());
 			stmt.setInt(3, updatedFilm.getReleaseYear());
-			stmt.setInt(4, 1);  // English
-			stmt.setInt(5, updatedFilm.getRentalDuration());
-			stmt.setDouble(6, updatedFilm.getRentalRates());
+			stmt.setInt(4, updatedFilm.getRentalDuration());
+			stmt.setDouble(5, updatedFilm.getRentalRates());
+			stmt.setInt(6, 1);
 			stmt.setInt(7, updatedFilm.getLength());
 			stmt.setDouble(8, updatedFilm.getReplacementCost());
 			stmt.setString(9, updatedFilm.getRating());
@@ -111,16 +114,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			}
 			else
 			{
-				oldFilm.setTitle(updatedFilm.getTitle());
-				oldFilm.setDescription(updatedFilm.getDescription());
-				oldFilm.setReleaseYear(updatedFilm.getReleaseYear());
-				oldFilm.setLanguageId(updatedFilm.getLanguageId());
-				oldFilm.setRentalDuration(updatedFilm.getRentalDuration());
-				oldFilm.setRating(updatedFilm.getRating());
-				oldFilm.setReplacementCost(updatedFilm.getReplacementCost());
-				oldFilm.setLength(updatedFilm.getLength());
-				oldFilm.setSpecialFeatures(updatedFilm.getSpecialFeatures());
-				oldFilm.setRentalDuration(updatedFilm.getRentalDuration());
+
 				conn.commit();
 			}
 		} catch (SQLException sqle) {
@@ -136,7 +130,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			throw new RuntimeException("Error updating film " + oldFilm);
 		}
 		conn.close();
-		return oldFilm;
+		return updatedFilm;
 	} 
 
 	@Override
