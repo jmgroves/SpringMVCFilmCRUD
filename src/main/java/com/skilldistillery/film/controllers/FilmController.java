@@ -120,21 +120,19 @@ public class FilmController {
 	        mv.setViewName("WEB-INF/result.jsp");
 	        return mv;
 	    }
-//	@RequestMapping(path="edit.do", method=RequestMethod.POST, name ="updateFilm")
-	@RequestMapping(path="updateActor.do", method=RequestMethod.GET)
-	public ModelAndView editFilm(Film oldFilm, Film updatedFilm) {
-		ModelAndView mv = new ModelAndView();
-		Film f2 = updatedFilm;
-		try {
-			db.updateFilm(oldFilm, updatedFilm);
-			mv.addObject("film,", f2);
-			mv.setViewName("/WEB-INF/result.jsp");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return mv;
-	}
+//	@RequestMapping(path="updateActor.do", method=RequestMethod.GET)
+//	public ModelAndView editFilm(Actor oldActor, Actor newActor) {
+//		ModelAndView mv = new ModelAndView();
+//		try {
+//			Actor newActor2 = db.updateActor(oldActor, newActor);
+//			mv.addObject("actor,", newActor2);
+//			mv.setViewName("/WEB-INF/viewActor.jsp");
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		return mv;
+//	}
 	@RequestMapping(path="viewActor.do", method = RequestMethod.GET)
 	public ModelAndView viewActor(int actorId) {
 		ModelAndView mv = new ModelAndView();
@@ -151,6 +149,13 @@ public class FilmController {
 		}
 		return mv;
 	}
+	@RequestMapping(path="addactorview.do", method=RequestMethod.GET, name ="addActor")
+	  public ModelAndView addActor() {
+	    ModelAndView mv = new ModelAndView();
+		mv.addObject("actor");
+		mv.setViewName("/WEB-INF/addactor.jsp");
+	    return mv;
+	  }
 
 	  
 //	@RequestMapping(path="edit.do", method=RequestMethod.GET, name ="updateFilm")

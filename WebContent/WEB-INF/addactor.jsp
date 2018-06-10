@@ -10,10 +10,13 @@
 <title>Add Actor</title>
 </head>
 <body>
-
-
-<h2>${actor.firstName } ${actor.lastName } was added successfully.</h2>
-	<h3>Actor Id: ${actor.id }</h3>
+<h1>Enter the information of the actor you would like to add.</h1>
+<form action="addactor.do" method="GET">
+First Name: <input type="text" name="firstName" value="${actor.firstName}"><br>
+Last Name: <input type="text" name="lastName" value="${actor.lastName}"><br>
+	<input type="submit" value="Add Actor" />
+	<input type="hidden" name="actorId" value="${actor.id}" />
+	</form>
 	<div>
 		<a href="index.html">Home</a>
 	</div>
