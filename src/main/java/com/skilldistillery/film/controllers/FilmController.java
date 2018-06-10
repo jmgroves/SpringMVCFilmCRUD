@@ -112,7 +112,7 @@ public class FilmController {
 	        Film updatedFilm = new Film();
 	        updatedFilm.setId(filmId);
 	        try {
-				db.updateFilm(oldFilm, updatedFilm);
+				updatedFilm = db.updateFilm(oldFilm, updatedFilm);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
