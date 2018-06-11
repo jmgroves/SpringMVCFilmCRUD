@@ -67,6 +67,9 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 					getActorsByFilmId(filmId));
 
 		}
+		else {
+			return null;
+		}
 		sqltext = "SELECT category.name from film\n" + "    join film_category on film_id = film.id\n"
 				+ "      join category on category.id = category_id\n" + "        where film.id = ?";
 		stmt = conn.prepareStatement(sqltext);
@@ -429,6 +432,36 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		}
 
 		return newActor;
+	}
+
+	@Override
+	public boolean deleteActor(Actor actor) throws SQLException {
+		Connection conn = null;
+		String user = "student";
+		String pass = "student";
+		try {
+			conn = DriverManager.getConnection(url, user, pass);
+			conn.setAutoCommit(false);
+		String sql = "Delete from actor where id = ?";
+		PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+		stmt.setInt(1, actor.getId());
+		int updateResult = stmt.executeUpdate();
+		if (updateResult != 1) {
+			conn.rollback();
+			System.out.println("rollback********************************");
+		} else {
+
+			conn.commit();
+			System.out.println("commit*********************************");
+		}
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return true;
 	}
 
 }

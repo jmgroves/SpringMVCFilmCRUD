@@ -3,6 +3,7 @@ package com.skilldistillery.film.controllers;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,9 @@ public class FilmController {
 	    Film f;
 		try {
 			f = db.getFilmById(filmId);
+			if (f == null) {
+				mv.addObject("noFilm", "word");
+			}
 			mv.addObject("film", f);
 			mv.setViewName("/WEB-INF/viewFilmbyID.jsp");
 		} catch (SQLException e) {
@@ -165,6 +169,18 @@ public class FilmController {
 		mv.setViewName("/WEB-INF/updateActor.jsp");
 		return mv;
 	}
+	@RequestMapping(path="deleteActor.do", method=RequestMethod.GET, name ="deleteActor")
+	public ModelAndView deleteActor(int actorId) throws SQLException {
+		ModelAndView mv = new ModelAndView();
+		Actor actor = db.getActorById(actorId);
+		String deletedActor = actor.getFirstName() + " " + actor.getLastName();
+		mv.addObject("deletedActor", deletedActor);
+		db.deleteActor(actor);
+		mv.setViewName("/WEB-INF/viewActor.jsp");
+		
+		return mv;
+	}
+	
 
 	  
 //	@RequestMapping(path="edit.do", method=RequestMethod.GET, name ="updateFilm")

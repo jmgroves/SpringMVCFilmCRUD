@@ -50,7 +50,7 @@
 	<c:choose>
 		<c:when test="${not empty deletedFilm}">You deleted ${deletedFilm}</c:when>
 		<c:when test="${not empty updatedFilm}">You updated ${updatedFilm.title}</c:when>
-		<c:when test="${empty film }">No film met your criteria</c:when>
+		<c:when test="${not empty noFilm }">No film met your criteria</c:when>
 		<c:otherwise>
 			<h1>${film.title}</h1>
 			<ul>
