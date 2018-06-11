@@ -169,6 +169,13 @@ public class FilmController {
 		mv.setViewName("/WEB-INF/updateActor.jsp");
 		return mv;
 	}
+	@RequestMapping(path="addFilm.do", method=RequestMethod.GET, name ="addFilm")
+	public ModelAndView addFilmView() throws SQLException {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("film");
+		mv.setViewName("/WEB-INF/addFilmView.jsp");
+		return mv;
+	}
 	@RequestMapping(path="deleteActor.do", method=RequestMethod.GET, name ="deleteActor")
 	public ModelAndView deleteActor(int actorId) throws SQLException {
 		ModelAndView mv = new ModelAndView();
