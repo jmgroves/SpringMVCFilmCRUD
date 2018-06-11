@@ -23,6 +23,7 @@
 	<c:choose>
 		<c:when test="${not empty noActor }">Actor ID not found.</c:when>
 		<c:when test="${not empty deletedActor}">You deleted ${deletedActor}</c:when>
+		<c:when test="${empty actor }">Your actor failed to update</c:when>
 		<c:otherwise>
 			<c:if test="${not empty addedActor }">
 				<h1>Actor Added Successfully</h1>

@@ -113,6 +113,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 				film = null;
 				conn.rollback();
 				System.out.println("rollback");
+				return film;
 			} else {
 
 				conn.commit();
@@ -128,7 +129,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 					System.err.println("Error trying to rollback");
 				}
 			}
-			throw new RuntimeException("Error updating film " + film);
+			//throw new RuntimeException("Error updating film " + film);
 		}
 		conn.close();
 		return film;
@@ -296,7 +297,9 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 					System.err.println("Error trying to rollback");
 				}
 			}
-			throw new RuntimeException("Error inserting film " + film);
+			//throw new RuntimeException("Error inserting film " + film);
+			film = null;
+			return film;
 		}
 		return film;
 	}
@@ -396,7 +399,9 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 					System.err.println("Error trying to rollback");
 				}
 			}
-			throw new RuntimeException("Error inserting Actor " + actor);
+			//throw new RuntimeException("Error inserting Actor " + actor);
+			actor = null;
+			return actor;
 		}
 		return actor;
 	}
@@ -429,6 +434,8 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			// TODO Auto-generated catch block
 			System.err.println("Error trying to update Actor");
 			e.printStackTrace();
+			newActor = null;
+			return newActor;
 		}
 
 		return newActor;
