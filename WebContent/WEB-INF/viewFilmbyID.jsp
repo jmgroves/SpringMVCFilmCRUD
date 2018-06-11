@@ -58,6 +58,7 @@
 				<li>Special Features: ${film.specialFeatures }</li>
 				<li>Released in: ${film.releaseYear }</li>
 				<li>Language: ${film.languageId }</li>
+				<li>Rating: ${film.rating}</li>
 				<li>Rental Duration: ${film.rentalDuration }</li>
 				<li>Rental Rate: ${film.rentalRates }</li>
 				<li>Length: ${film.length }</li>
