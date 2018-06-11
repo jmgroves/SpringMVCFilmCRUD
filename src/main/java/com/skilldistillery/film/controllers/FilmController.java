@@ -57,8 +57,15 @@ public class FilmController {
 		int filmId2 = Integer.parseInt(filmId);
 		try {
 			Film f = db.getFilmById(filmId2);
-			mv.addObject("deletedFilm", f.getTitle());
+			String title = f.getTitle();
 			db.deleteFilm(f);
+			if (db.getFilmById(filmId2) == null) {
+				
+				mv.addObject("deletedFilm", title);
+			}
+			else {
+				mv.addObject("failedDelete", title);
+			}
 			mv.setViewName("/WEB-INF/viewFilmbyID.jsp");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
