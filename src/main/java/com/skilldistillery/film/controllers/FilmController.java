@@ -172,8 +172,18 @@ public class FilmController {
 	@RequestMapping(path="addFilm.do", method=RequestMethod.GET, name ="addFilm")
 	public ModelAndView addFilmView() throws SQLException {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("film");
+		Film f = new Film();
+		mv.addObject("film", f);
 		mv.setViewName("/WEB-INF/addFilmView.jsp");
+		return mv;
+	}
+	@RequestMapping(path="addingFilm.do", method=RequestMethod.POST, name ="addingFilm")
+	public ModelAndView addFilm(Film film) throws SQLException {
+		ModelAndView mv = new ModelAndView();
+		System.out.println(film.getDescription());
+		Film newFilm = db.addFilm(film);
+		mv.addObject("film", newFilm);
+		mv.setViewName("/WEB-INF/viewFilmbyID.jsp");
 		return mv;
 	}
 	@RequestMapping(path="deleteActor.do", method=RequestMethod.GET, name ="deleteActor")
