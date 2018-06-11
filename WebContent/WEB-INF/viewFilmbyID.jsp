@@ -53,11 +53,13 @@
 		<c:when test="${not empty noFilm }">No film met your criteria</c:when>
 		<c:otherwise>
 			<h1>${film.title}</h1>
+			<h2>${film.id }</h2>
 			<ul>
 				<li>Description: ${film.description }</li>
 				<li>Special Features: ${film.specialFeatures }</li>
 				<li>Released in: ${film.releaseYear }</li>
 				<li>Language: ${film.languageId }</li>
+				<li>Rating: ${film.rating}</li>
 				<li>Rental Duration: ${film.rentalDuration }</li>
 				<li>Rental Rate: ${film.rentalRates }</li>
 				<li>Length: ${film.length }</li>

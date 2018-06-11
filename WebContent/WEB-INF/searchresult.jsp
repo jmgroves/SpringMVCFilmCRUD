@@ -25,6 +25,8 @@
 		<c:otherwise>
 			<c:forEach var="film" items="${filmList}">
 				<h1>${film.title}</h1>
+				<h2>${film.id }</h2>
+				
 				<ul>
 					<li>Description: ${film.description }</li>
 					<li>Special Features: ${film.specialFeatures }</li>
