@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -109,7 +111,7 @@ public class FilmController {
 		try {
 			Film f = db.getFilmById(filmIdString);
 			f.setId(filmIdString);
-			mv.addObject("oldFilm", f);
+			mv.addObject("film", f);
 			mv.setViewName("/WEB-INF/updateFilm.jsp");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -121,11 +123,8 @@ public class FilmController {
 	    public ModelAndView updateFilmDetails(@RequestParam(name = "filmID") String filmID, Film film) throws SQLException {
 	        ModelAndView mv = new ModelAndView();
 	        int filmId2 = Integer.parseInt(filmID);
-	        System.out.println(filmID + "***************************");
-	        System.out.println(film);
 	        film.setId(filmId2);
 	        Film updatedFilm = film;
-	        System.out.println(film.getId());
 	   //     updatedFilm.setId(filmId2);
 	        try {
 				updatedFilm = db.updateFilm(film);
@@ -185,9 +184,12 @@ public class FilmController {
 		return mv;
 	}
 	@RequestMapping(path="addingFilm.do", method=RequestMethod.POST, name ="addingFilm")
-	public ModelAndView addFilm(Film film) throws SQLException {
+	public ModelAndView addFilm(Film film, HttpServletRequest request) throws SQLException {
 		ModelAndView mv = new ModelAndView();
-		System.out.println(film.getDescription());
+		String [] specialFeatures = request.getParameterValues("specialFeatures");
+		for (String string : specialFeatures) {
+			System.out.println(string);
+		}
 		Film newFilm = db.addFilm(film);
 		mv.addObject("film", newFilm);
 		mv.setViewName("/WEB-INF/viewFilmbyID.jsp");

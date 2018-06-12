@@ -25,16 +25,26 @@
 <form action="updateFilmDetails.do" method="POST">
 Title <input type="text" name="title" value="${oldFilm.title}"><br>
 Description <input type="text" name="description" value="${oldFilm.description}"><br>
-Special Features <input type="text" name="specialFeatures" value="${oldFilm.specialFeatures}"><br>
-Rating <input type="text" name="rating" value="${oldFilm.rating}"><br>
-Release Year <input type="text" name="releaseYear" value="${oldFilm.releaseYear}"><br>
-Duration <input type="text" name="rentalDuration" value="${oldFilm.rentalDuration}"><br>
-Rental Rates <input type="text" name="rentalRates" value="${oldFilm.rentalRates}"><br>
-Length <input type="text" name="length" value="${oldFilm.length}"><br>
-Replacement Cost <input type="text" name="replacementCost" value="${oldFilm.replacementCost}"><br>
-Category <input type="text" name="category" value="${oldFilm.categories}"><br>
-	<input type="hidden" name="filmID" value="${oldFilm.id}"/>
-	<input type="hidden" name="film" value="${oldFilm}"/>
+<h3>Select Special Features:</h3>
+ Trailers<input type="checkbox" name="specialFeatures" value="Trailers">
+ Commentaries<input type="checkbox" name="specialFeatures" value="Commentaries">
+Deleted Scenes<input type="checkbox" name="specialFeatures" value="Deleted Scenes">
+Behind the Scenes <input type="checkbox" name="specialFeatures" value="Behind the Scenes">
+<br>
+<h3>Select Rating:</h3>
+G <input type="radio" name="rating" value="G">
+PG <input type="radio" name="rating" value="PG">
+PG13 <input type="radio" name="rating" value="PG13">
+R <input type="radio" name="rating" value="R">
+NC17 <input type="radio" name="rating" value="NC17"><br>
+Release Year <input type="text" name="releaseYear" value="${film.releaseYear}"><br>
+Duration <input type="text" name="rentalDuration" value="${film.rentalDuration}"><br>
+Rental Rates <input type="text" name="rentalRates" value="${film.rentalRates}"><br>
+Length <input type="text" name="length" value="${film.length}"><br>
+Replacement Cost <input type="text" name="replacementCost" value="${film.replacementCost}"><br>
+Category <input type="text" name="category" value="${film.categories}"><br>
+	<input type="hidden" name="filmID" value="${film.id}"/>
+	<input type="hidden" name="film" value="${film}"/>
 	<input type="submit" value="Update Film"/>
 	</form>
 	
