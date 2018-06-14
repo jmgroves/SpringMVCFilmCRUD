@@ -20,23 +20,69 @@
 <title>View</title>
 </head>
 <body>
-<h2>Film ID: ${oldFilm.id }</h2>
+<h2>Film ID: ${film.id }</h2>
 
-<form action="updateFilmDetails.do" method="POST">
-Title <input type="text" name="title" value="${oldFilm.title}"><br>
-Description <input type="text" name="description" value="${oldFilm.description}"><br>
+<form action="updateFilmDetails.do" method="POST" autocomplete="on">
+Title <input type="text" name="title" value="${film.title}"><br>
+Description <input type="text" name="description" value="${film.description}"><br>
 <h3>Select Special Features:</h3>
- Trailers<input type="checkbox" name="specialFeatures" value="Trailers">
- Commentaries<input type="checkbox" name="specialFeatures" value="Commentaries">
-Deleted Scenes<input type="checkbox" name="specialFeatures" value="Deleted Scenes">
-Behind the Scenes <input type="checkbox" name="specialFeatures" value="Behind the Scenes">
+ <c:choose>
+ <c:when test="${not empty trailers}"> Trailers<input type="checkbox" name="specialFeatures" value="Trailers" checked>
+ </c:when>  
+ <c:otherwise> Trailers<input type="checkbox" name="specialFeatures" value="Trailers">
+ </c:otherwise>
+ </c:choose>
+ <c:choose>
+ <c:when test="${not empty Commentaries}"> Commentaries<input type="checkbox" name="specialFeatures" value="Commentaries" checked>
+ </c:when>  
+ <c:otherwise> Commentaries<input type="checkbox" name="specialFeatures" value="Commentaries">
+ </c:otherwise>
+ </c:choose>
+ <c:choose>
+ <c:when test="${not empty DS}"> Deleted Scenes<input type="checkbox" name="specialFeatures" value="Deleted Scenes" checked>
+ </c:when>  
+ <c:otherwise> Deleted Scenes<input type="checkbox" name="specialFeatures" value="Deleted Scenes">
+ </c:otherwise>
+ </c:choose>
+ <c:choose>
+ <c:when test="${not empty BS}"> Behind the Scenes<input type="checkbox" name="specialFeatures" value="Behind the Scenes" checked>
+ </c:when>  
+ <c:otherwise> Behind the Scenes<input type="checkbox" name="specialFeatures" value="Behind the Scenes">
+ </c:otherwise>
+ </c:choose> 
 <br>
 <h3>Select Rating:</h3>
-G <input type="radio" name="rating" value="G">
-PG <input type="radio" name="rating" value="PG">
-PG13 <input type="radio" name="rating" value="PG13">
-R <input type="radio" name="rating" value="R">
-NC17 <input type="radio" name="rating" value="NC17"><br>
+<c:choose>
+ <c:when test="${not empty G}"> G<input type="radio" name="rating" value="G" checked>
+ </c:when>  
+ <c:otherwise> G<input type="radio" name="rating" value="G" >
+ </c:otherwise>
+ </c:choose> 
+<c:choose>
+ <c:when test="${not empty PG}"> PG<input type="radio" name="rating" value="PG" checked>
+ </c:when>  
+ <c:otherwise> PG<input type="radio" name="rating" value="PG" >
+ </c:otherwise>
+ </c:choose> 
+<c:choose>
+ <c:when test="${not empty PG13}"> PG13<input type="radio" name="rating" value="PG13" checked>
+ </c:when>  
+ <c:otherwise> PG13<input type="radio" name="rating" value="PG13" >
+ </c:otherwise>
+ </c:choose> 
+<c:choose>
+ <c:when test="${not empty R}"> R<input type="radio" name="rating" value="R" checked>
+ </c:when>  
+ <c:otherwise> R<input type="radio" name="rating" value="R" >
+ </c:otherwise>
+ </c:choose> 
+<c:choose>
+ <c:when test="${not empty NC17}"> NC17<input type="radio" name="rating" value="NC17" checked>
+ </c:when>  
+ <c:otherwise> NC17<input type="radio" name="rating" value="NC17" >
+ </c:otherwise>
+ </c:choose> 
+<br>
 Release Year <input type="text" name="releaseYear" value="${film.releaseYear}"><br>
 Duration <input type="text" name="rentalDuration" value="${film.rentalDuration}"><br>
 Rental Rates <input type="text" name="rentalRates" value="${film.rentalRates}"><br>
