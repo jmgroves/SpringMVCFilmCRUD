@@ -1,11 +1,6 @@
 # SpringMVCFilmCRUD
 
-README
-
-
-# THIS PROJECT. THIS FREAKIN PROJECT.
-
-This project was an exercise in frustration and learning. Learning how to route the paths correctly to call updates to a database from a webform that was being called from somewhere else was something I wouldn't wish on an enemy.
+This project was an exercise in learning how to route the paths correctly to call updates to a database from a webform.
 
 
 #Description
@@ -15,8 +10,9 @@ This project revolves around a CRUD application with a relational database in My
 
 #Technologies
 
-We used quite a few technologies on this project. From SpringMVC to Gradle, to deploying on AWS and usomg a tomcat server locally. Programming mostly done in Java as far as logic. HTML/CSS for some stylish pinash and actually clickable buttons that do real internet things. MySQL for the relational database. 
+We used quite a few technologies on this project. From SpringMVC to Gradle, to deploying on AWS and using a tomcat server locally. Java handled the logic. HTML/CSS for the presentation and function on the website side. MySQL was used for the relational database. 
 
 #Challenges
 
-We learned very quickly that we were not as good as we thought we were. Pathing objects through the mystical land of SpringMVC and trying to figure out why or why not things are working was probably our biggest challenge. As rough as it was, we definitely learned a WHOOOOLE lot about how to create and deploy dynamic web applications.
+Figuring out how to pass objects from the database and throughout the database was tricky, but a good learning experience. The biggest help to figuring out how to pass items was to use system.out's to figure out what exactly was being passed as we would find that we were not always passing the correct item the first time through.
+
